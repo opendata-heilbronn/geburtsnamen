@@ -7,3 +7,8 @@ Feature-Ideen:
 * Wie häufig ist mein Name?
 * Was bedeutet mein Name?
 * Vergleich mit Moers
+
+JSBIN:
+
+* http://jsbin.com/jihatig/2/edit?html,css,output
+* http://jsbin.com/suzutut/edit
