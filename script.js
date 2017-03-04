@@ -181,7 +181,7 @@ function Zufallsname()
             Zufallszahl = Math.floor(Zufallszahl);
             Zufallszahl = Zufallszahl % AlleNamen.length;
             var Ausgabename = AlleNamen[Zufallszahl];
-            Ausgabezeile = inHTMLumwandeln(Ausgabename);
+            Ausgabezeile = "<b>" + inHTMLumwandeln(Ausgabename) + "</b>";
             if(datenbank2015)
             {
                 var gefunden = false;
