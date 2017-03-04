@@ -7,6 +7,24 @@
         <script src="script.js"></script>
     </head>
     <body>
-        
+        <div class="name-search">
+            <h1>Wie häufig ist dein Name?</h1>
+  
+            <form class="search-name-form" autocomplete="off">
+                <input type="text" name="inputName" class="input-name" placeholder="Gib einen Namen ein">
+                <p>Suche nach Geschlecht:
+                <input type="checkbox" id="male" value="male" onclick="genderClick()" checked><label for="male">männlich</label>
+                <input type="checkbox" id="female" value="female" onclick="genderClick()" checked><label for="female">weiblich</label>
+                </p>
+                <p>Suche in Jahr:
+                <input type="checkbox" id="2015" value="2015" onclick="yearClick()" checked><label for="2015">2015</label>
+                <input type="checkbox" id="2016" value="2016" onclick="yearClick()" checked><label for="2016">2016</label>
+                </p>
+                <button type="submit" class="show-result">Ergebnis anzeigen</button>
+            </form>
+
+            <div class="result"></div>
+
+        </div>
     </body>
 </html>
