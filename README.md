@@ -7,6 +7,7 @@ Feature-Ideen:
 * Wie häufig ist mein Name?
 * Was bedeutet mein Name?
 * Vergleich mit Moers
+* Männlich/Weiblich addieren
 
 JSBIN:
 
