@@ -10,3 +10,6 @@ div, footer{
     display: block;
     margin-left: 10%;
 }
+div *{
+    margin-left: 0;
+}
