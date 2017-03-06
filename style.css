@@ -6,7 +6,7 @@ body {
     background-image: url(https://ih1.redbubble.net/image.26303649.5479/flat,800x800,075,f.u1.jpg);
 }
 div{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }
