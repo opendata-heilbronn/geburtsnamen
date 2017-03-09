@@ -5,6 +5,8 @@
         <title></title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+        
     </head>
     <body>
         <div class="name-search">
@@ -22,6 +24,10 @@
                 <button type="submit" class="show-result">Ergebnis anzeigen</button>
             </form>
             <div class="result"></div>
+            <div style="width:400px;">
+                <canvas id="myChart" style="width:400px; height:400px;"></canvas>
+            </div>
+                
         </div>
         <div style="clear: both;"></div>
         <div id="NamenZaehlen">

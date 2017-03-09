@@ -36,6 +36,7 @@ window.onload = function () {
 		    namen2016 = antwort;
 	    }};;
 	req2016.send();
+    
     //------------------------------------------------------------------------------------------------------
     var onButtonClick = function(event) {
 		event.preventDefault();
@@ -47,15 +48,52 @@ window.onload = function () {
 		
 		if (y2015) { 
 			var matchingNameObj = searchName(namen2015);
-			output += matchingNameObj.anzahl + ' Neugeborene im Jahr 2015 tragen deinen Namen<br>';
+			var anzahl2015 = matchingNameObj.anzahl;
+            console.log (anzahl2015);
+            output += anzahl2015 + ' Neugeborene im Jahr 2015 tragen deinen Namen<br>';
 		}
 		if (y2016) {
 			var matchingNameObj = searchName(namen2016);
-			output += matchingNameObj.anzahl + ' Neugeborene im Jahr 2016 tragen deinen Namen<br>';
+            var anzahl2016 = matchingNameObj.anzahl;
+            console.log (anzahl2016);
+			output += anzahl2016 + ' Neugeborene im Jahr 2016 tragen deinen Namen<br>';
 		}
+
+        if (y2015 && y2016) {
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["2015", "2016"],
+                    datasets: [{
+                        label: 'Anzahl Namen',
+                        data: [anzahl2015, anzahl2016],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
 
 		document.querySelector('.result').innerHTML = output;
 	};
+    console.log("onButtonClick init");
     document.querySelector('.search-name-form').addEventListener('submit', onButtonClick);
 }
 //----------------------------------------------------------------------------------------------------------
@@ -219,7 +257,8 @@ function Zufallsname()
     document.getElementById("Ausgabezeile").innerHTML = Ausgabezeile;
     document.getElementById("Ausgabezeile").style.display = 'inline-block';
 }
-//----------------------------------------------------------------------------------------------------------
+// ************************************
+// Section name-search
 function genderClick() {
 	var male = document.getElementById("male").checked
 	var female = document.getElementById("female").checked
