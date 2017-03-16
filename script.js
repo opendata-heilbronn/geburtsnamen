@@ -11,53 +11,49 @@ var nameLists = [
     }
 ];
 
-var requestJsonFile = function (url, fn) {
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
+var requestJsonFile = function (url) {
+    return new Promise(function (resolve, reject) {
+        var request = new XMLHttpRequest();
+        request.open('GET', url, true);
 
-    request.onload = function () {
-        if (this.status >= 200 && this.status < 400) {
-            var data = JSON.parse(this.response);
-            fn(null, data);
-        } else {
-            fn(new Error(this.status), null);
-        }
-    };
+        request.onload = function () {
+            if (this.status >= 200 && this.status < 400) {
+                var data = JSON.parse(this.response);
+                resolve(data);
+            } else {
+                reject(new Error(this.status));
+            }
+        };
 
-    request.onerror = function (e) {
-        fn(e, null);
-    };
+        request.onerror = reject;
 
-    request.send();
+        request.send();
+    });
 };
 
-var loadNames = function (fn) {
-    var loaded = 1;
-    nameLists.forEach(function (nameList) {
-        requestJsonFile(nameList.sourceUrl, function (error, data) {
-            loaded++;
-            if (!error && data) nameList.names = data;
-            if (loaded === nameLists.length) fn();
+var loadNames = function () {
+    var promises = nameLists.map(function (nameList) {
+        return requestJsonFile(nameList.sourceUrl).then(function (data) {
+            nameList.names = data;
         })
     });
+    return Promise.all(promises);
 };
 
-function ready(fn) {
-    if (document.readyState != 'loading') {
-        fn();
-    } else {
-        document.addEventListener('DOMContentLoaded', fn);
-    }
+function ready() {
+    return new Promise(function (resolve) {
+        if (document.readyState != 'loading') {
+            resolve();
+        } else {
+            document.addEventListener('DOMContentLoaded', resolve);
+        }
+    });
 }
 
-ready(function () {
-    loadNames(function () {
-        initElements();
-    });
-});
+var readyPromises = [ready(), loadNames()];
+Promise.all(readyPromises).then(initElements);
 
-
-var initElements = function () {
+function initElements() {
     var onButtonClick = function (event) {
         event.preventDefault();
         var output = "";
