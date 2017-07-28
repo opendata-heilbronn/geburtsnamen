@@ -61,6 +61,7 @@ function VorschlaglisteAuffuellen()
 	 if (!AlleNamen.vorhanden(nameLists[1].names[i].vorname)) {
 		AlleNamen.push(nameLists[1].names[i].vorname);
 	 }
+	AlleNamen.sort();
 	var Vorschlagliste = "";
 	for(var i = 0; i < AlleNamen.length; i++)
 	{
