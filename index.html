@@ -11,8 +11,9 @@
     <body>
         <div class="name-search">
             <h1>Wie häufig ist dein Name?</h1>
-            <form class="search-name-form" autocomplete="off">
-                <input type="text" name="inputName" class="input-name" placeholder="Gib einen Namen ein">
+            <form class="search-name-form">
+                <input type="search" name="inputName" list="Namensliste" class="input-name" placeholder="Gib einen Namen ein">
+			<datalist id="Namensliste"></datalist> 
                 <p>Suche nach Geschlecht:
                 <input type="checkbox" id="male" value="male" onclick="genderClick()" checked><label for="male">männlich</label>
                 <input type="checkbox" id="female" value="female" onclick="genderClick()" checked><label for="female">weiblich</label>
@@ -24,7 +25,7 @@
                 <button type="submit" class="show-result">Ergebnis anzeigen</button>
             </form>
             <div class="result"></div>
-            <div style="width:400px;">
+            <div style="width:400px; display: none;" id="Chart_Area">
                 <canvas id="myChart" style="width:400px; height:400px;"></canvas>
             </div>
                 

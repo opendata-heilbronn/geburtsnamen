@@ -50,6 +50,25 @@ function ready() {
     });
 }
 
+function VorschlaglisteAuffuellen()
+{
+	var AlleNamen = new Array();
+	for(var i = 0; i < nameLists[0].names.length; i++)
+	{
+		AlleNamen.push(nameLists[0].names[i].vorname);
+	}
+	for(var i = 0; i < nameLists[1].names.length; i++)
+	 if (!AlleNamen.vorhanden(nameLists[1].names[i].vorname)) {
+		AlleNamen.push(nameLists[1].names[i].vorname);
+	 }
+	var Vorschlagliste = "";
+	for(var i = 0; i < AlleNamen.length; i++)
+	{
+		Vorschlagliste += "<option value='" + AlleNamen[i] + "'>";
+	}
+	document.getElementById("Namensliste").innerHTML = Vorschlagliste;
+}
+
 var readyPromises = [ready(), loadNames()];
 Promise.all(readyPromises).then(initElements);
 
@@ -106,11 +125,12 @@ function initElements() {
                 }
             });
         }
-
+	document.getElementById("Chart_Area").style.display = 'inline-block';
         document.querySelector('.result').innerHTML = output;
     };
     console.log("onButtonClick init");
     document.querySelector('.search-name-form').addEventListener('submit', onButtonClick);
+    VorschlaglisteAuffuellen();
 }
 //----------------------------------------------------------------------------------------------------------
 function inHTMLumwandeln(Zeichenkette) {
